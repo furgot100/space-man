@@ -24,19 +24,16 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    #guessed = True
-    #for letters_guessed in list(secret_word):
-       #if letters_guessed not in secret_word:
-            #return guessed = False
-        #else:
-            #return guessed = True
+    
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     pass
-    
-    if letters_guessed == list(secret_word):
-       return True
-    else:
-        return False
+    for letters in secret_word:
+        if letters in letters_guessed:
+            continue
+        else:
+            return False
+        
+    return True
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -87,7 +84,8 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-    letters_left = 'abcdefghijklmnopqrstuvwxyz'
+    letters_left = list('abcdefghijklmnopqrstuvwxyz')
+    print("".join(letters_left))
     #TODO: show the player information about the game according to the project spec
     print("Letters left: " + letters_left)
     
