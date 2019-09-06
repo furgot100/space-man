@@ -84,7 +84,6 @@ def guesses(leftover_letter,):
         print("Letters left: ", leftover_letter)
 
 
-
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -97,6 +96,12 @@ def spaceman(secret_word):
         guess = input("Enter a letter")
     guess = str.lower(guess)
 
+    if str.isalpha(guess) == False:
+        print("C'mon man. A letter.")
+    elif guess in letters_guessed:
+        print("Letter already used. Try again.")
+    else:
+        letters_guessed.append(guess)
     
     #TODO: show the player information about the game according to the project spec
     
