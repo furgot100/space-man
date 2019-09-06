@@ -83,17 +83,30 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-    tries = 7
-    while tries > 0:
-        print("---------------------")
-        print("Tries left: ", tries)
-        print("Letters left: ", leftover_letter)
     letters_guessed =[]
-    guess = input("Enter a letter: ")
+    
+    guess = str(input("Enter a letter: "))
     while len(guess) != 1:
         guess = input("Enter a letter")
+    
     guess = str.lower(guess)
 
+    tries = 7
+    
+    print(is_guess_in_word(guess,secret_word))
+    
+    letters_left = list(string.ascii_lowercase)
+    for i in letters_guessed:
+        letters_left.remove(i)
+        return "".join(letters_left)
+   
+    if tries > 0:
+        print("---------------------")
+        print("Tries left: ", tries)
+        print("Letters left: ", letters_left)
+    
+    
+    
     if str.isalpha(guess) == False:
         print("C'mon man. A letter.")
     elif guess in letters_guessed:
@@ -107,7 +120,11 @@ def spaceman(secret_word):
     else:
         print("Incorrect, try again")
         tries -= 1
-    print(is_guess_in_word(letters_guessed,secret_word))
+    
+    if is_guess_in_word(secret_word, letters_guessed):
+        print("You win!")
+    #else:
+        #print("You lose! Word was", secret_word)
     #TODO: show the player information about the game according to the project spec
     
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
@@ -119,10 +136,7 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
     
     #GeeksforGeeks helping with lower case alphabet
-    letters_left = list(string.ascii_lowercase)
-    for letters in letters_guessed:
-        letters_left.remove(letters)
-    return "".join(letters_left)
+    
 
     
 
