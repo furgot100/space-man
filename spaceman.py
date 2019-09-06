@@ -69,20 +69,13 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
     '''
     #TODO: check if the letter guess is in the secret word
+    
+
     if guess in secret_word:
-        print("Letter is in word")
-
+       return True
     else:
-        print("Letter is not in the word")
+        return False
     pass
-
-def guesses(leftover_letter,):
-    tries = 7
-    while tries > 0:
-        print("---------------------")
-        print("Tries left: ", tries)
-        print("Letters left: ", leftover_letter)
-
 
 def spaceman(secret_word):
     '''
@@ -90,6 +83,11 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
+    tries = 7
+    while tries > 0:
+        print("---------------------")
+        print("Tries left: ", tries)
+        print("Letters left: ", leftover_letter)
     letters_guessed =[]
     guess = input("Enter a letter: ")
     while len(guess) != 1:
@@ -103,6 +101,13 @@ def spaceman(secret_word):
     else:
         letters_guessed.append(guess)
     
+    if is_guess_in_word(guess,secret_word) == True:
+         print('''Correct!
+        Guessed so far: ''', get_guessed_word(guess, secret_word))
+    else:
+        print("Incorrect, try again")
+        tries -= 1
+    print(is_guess_in_word(letters_guessed,secret_word))
     #TODO: show the player information about the game according to the project spec
     
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
