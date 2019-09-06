@@ -113,8 +113,8 @@ def spaceman(secret_word):
         else:
             letters_guessed.append(guess)
         
-        print(is_guess_in_word(guess,secret_word))
-        
+        print(get_guessed_word(secret_word, guess))
+
         if is_guess_in_word(guess,secret_word) == True:
              print('''Correct!
             Guessed so far: ''', get_guessed_word(guess, secret_word))
@@ -126,7 +126,8 @@ def spaceman(secret_word):
             print("You win!")
         else:
             continue
-
+    if tries <= 0:
+        print("You lose!, the word was", secret_word)
 
 
     
