@@ -85,45 +85,62 @@ def spaceman(secret_word):
     '''
     letters_guessed =[]
     
-    guess = str(input("Enter a letter: "))
-    while len(guess) != 1:
-        guess = input("Enter a letter")
     
-    guess = str.lower(guess)
 
     tries = 7
     
-    print(is_guess_in_word(guess,secret_word))
+    
     
     letters_left = list(string.ascii_lowercase)
     for i in letters_guessed:
         letters_left.remove(i)
         return "".join(letters_left)
    
-    if tries > 0:
+    while tries > 0:
         print("---------------------")
         print("Tries left: ", tries)
         print("Letters left: ", letters_left)
+        
+        guess = str(input("Enter a letter: "))
+        while len(guess) != 1:
+            guess = input("Enter a letter")
+        guess = str.lower(guess)
+
+        if str.isalpha(guess) == False:
+            print("C'mon man. A letter.")
+        elif guess in letters_guessed:
+            print("Letter already used. Try again.")
+        else:
+            letters_guessed.append(guess)
+        
+        print(is_guess_in_word(guess,secret_word))
+        
+        if is_guess_in_word(guess,secret_word) == True:
+             print('''Correct!
+            Guessed so far: ''', get_guessed_word(guess, secret_word))
+        else:
+            print("Incorrect, try again")
+            tries -= 1
+
+        if is_guess_in_word(secret_word, letters_guessed):
+            print("You win!")
+        else:
+            continue
+
+
+
     
     
-    
-    if str.isalpha(guess) == False:
-        print("C'mon man. A letter.")
-    elif guess in letters_guessed:
-        print("Letter already used. Try again.")
-    else:
-        letters_guessed.append(guess)
-    
-    if is_guess_in_word(guess,secret_word) == True:
-         print('''Correct!
-        Guessed so far: ''', get_guessed_word(guess, secret_word))
-    else:
-        print("Incorrect, try again")
-        tries -= 1
-    
-    if is_guess_in_word(secret_word, letters_guessed):
-        print("You win!")
+    #if str.isalpha(guess) == False:
+        #print("C'mon man. A letter.")
+    #elif guess in letters_guessed:
+        #print("Letter already used. Try again.")
     #else:
+        #letters_guessed.append(guess)
+    
+    
+    
+    
         #print("You lose! Word was", secret_word)
     #TODO: show the player information about the game according to the project spec
     
