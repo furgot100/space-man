@@ -78,9 +78,6 @@ def is_guess_in_word(guess, secret_word):
         return False
     pass
 
-print("---------------------")
-print("Tries left: ", tries)
-print("Letters left: ", letters_left)
 
 
 def spaceman(secret_word):
@@ -90,67 +87,44 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
     letters_guessed =list()
-
     tries = 7
-    
     letters_left = list(string.ascii_lowercase)
     
-    for i in letters_guessed:
-        # try using .pop function to remove letter
-        letters_left.remove(i)
-        return "".join(letters_left)
-    
-    print(letters_left)
-    
     while tries > 0:
-        #print("---------------------")
-        #print("Tries left: ", tries)
-        #print("Letters left: ", letters_left)
+        print('---------------------')
 
-        guess = str(input("Enter a letter: "))
-        
+        guess = str(input('Enter a letter: '))
+
         while len(guess) != 1:
-            guess = input("Enter a letter")
-        guess = str.lower(guess)
+            guess = str.lower(input('Enter one letter'))
 
         while str.isalpha(guess) == False:
-            print("C'mon man. A letter.")
-            guess = input()
-        
+            guess = str.lower(input('C\'mon man. A letter:'))
+
         while guess in letters_guessed:
-            print("Letter already used. Try again.")
-        
+            guess = str.lower(input('Letter already used. Try again.'))
+
+
         letters_guessed.append(guess)
         
         print(get_guessed_word(secret_word, letters_guessed))
 
         if is_guess_in_word(guess,secret_word) == True:
-            print('Correct! Guessed so far: ', get_guessed_word(guess, secret_word))
+            print('Correct!')
         else:
             print("Incorrect, try again")
             tries -= 1
 
+        print('Letters guessed so far: ', *letters_guessed)
+
         if is_guess_in_word(secret_word, letters_guessed):
             print("You win!")
-        else:
-            continue
-    if tries <= 0:
-        print("You lose!, the word was", secret_word)
 
+        print("Tries left: ", tries)
+        print("Letters left: ", *letters_left)
+    
+    print("You lose!, the word was", secret_word)
 
-    
-    
-    if str.isalpha(guess) == False:
-        print("C'mon man. A letter.")
-    elif guess in letters_guessed:
-        print("Letter already used. Try again.")
-    else:
-        letters_guessed.append(guess)
-    
-    
-    
-    
-        #print("You lose! Word was", secret_word)
     
     
     #TODO: show the player information about the game according to the project spec
@@ -170,4 +144,5 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
+print("The word contains: " + str(len(secret_word)) + "letters")
 spaceman(secret_word)
