@@ -55,7 +55,6 @@ def get_guessed_word(secret_word, letters_guessed):
         if letters in letters_guessed:
             result += letters
         else:
-            #result = "_" * len(secret_word)
             result += "_"
     return result
 
@@ -117,13 +116,17 @@ def spaceman(secret_word):
 
         print('Letters guessed so far: ', *letters_guessed)
 
-        if is_guess_in_word(secret_word, letters_guessed):
-            print("You win!")
+        #if is_guess_in_word(secret_word, letters_guessed) == True:
+            #print("You win!")
 
+        letters_left.remove(guess)
         print("Tries left: ", tries)
         print("Letters left: ", *letters_left)
     
-    print("You lose!, the word was", secret_word)
+    if is_guess_in_word(secret_word, letters_guessed) == True:
+        print("You win!")
+    else:
+        print("You lose!, the word was", secret_word)
 
     
     
