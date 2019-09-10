@@ -78,6 +78,11 @@ def is_guess_in_word(guess, secret_word):
         return False
     pass
 
+print("---------------------")
+print("Tries left: ", tries)
+print("Letters left: ", letters_left)
+
+
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -85,39 +90,37 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
     letters_guessed =list()
-    
-    
 
     tries = 7
     
-    
     letters_left = list(string.ascii_lowercase)
-    
     
     for i in letters_guessed:
         # try using .pop function to remove letter
         letters_left.remove(i)
         return "".join(letters_left)
+    
     print(letters_left)
+    
     while tries > 0:
-        
-        
-        print("---------------------")
-        print("Tries left: ", tries)
-        print("Letters left: ", letters_left)
+        #print("---------------------")
+        #print("Tries left: ", tries)
+        #print("Letters left: ", letters_left)
 
         guess = str(input("Enter a letter: "))
-        letters_guessed.append(guess)
+        
         while len(guess) != 1:
             guess = input("Enter a letter")
         guess = str.lower(guess)
 
-        if str.isalpha(guess) == False:
+        while str.isalpha(guess) == False:
             print("C'mon man. A letter.")
-        if guess in letters_guessed:
+            guess = input()
+        
+        while guess in letters_guessed:
             print("Letter already used. Try again.")
-        else:
-            letters_guessed.append(guess)
+        
+        letters_guessed.append(guess)
         
         print(get_guessed_word(secret_word, letters_guessed))
 
@@ -148,6 +151,8 @@ def spaceman(secret_word):
     
     
         #print("You lose! Word was", secret_word)
+    
+    
     #TODO: show the player information about the game according to the project spec
     
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
