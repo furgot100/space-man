@@ -91,6 +91,7 @@ def spaceman(secret_word):
     
     while tries > 0:
         print('---------------------')
+        #print(secret_word)
 
         guess = str(input('Enter a letter: '))
 
@@ -99,6 +100,7 @@ def spaceman(secret_word):
 
         while str.isalpha(guess) == False:
             guess = str.lower(input('C\'mon man. A letter:'))
+            #letters_guessed.append(guess)
 
         while guess in letters_guessed:
             guess = str.lower(input('Letter already used. Try again.'))
@@ -116,18 +118,28 @@ def spaceman(secret_word):
 
         print('Letters guessed so far: ', *letters_guessed)
 
-        #if is_guess_in_word(secret_word, letters_guessed) == True:
-            #print("You win!")
-
         letters_left.remove(guess)
         print("Tries left: ", tries)
         print("Letters left: ", *letters_left)
-    
-    if is_guess_in_word(secret_word, letters_guessed) == True:
-        print("You win!")
-    else:
-        print("You lose!, the word was", secret_word)
 
+        if is_word_guessed(secret_word, letters_guessed) == True:
+            return print("You win!")
+        
+        if tries < 1:
+            print("You lose!, the word was", secret_word)
+        
+
+        
+
+    
+        
+    #while is_word_guessed(secret_word, letters_guessed) == True:
+        #print("You win!")
+        #break
+        
+    #if is_word_guessed(secret_word, letters_guessed) == False:
+        #print("You lose!, the word was", secret_word)
+   
     
     
     #TODO: show the player information about the game according to the project spec
