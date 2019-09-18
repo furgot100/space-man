@@ -156,10 +156,31 @@ def spaceman(secret_word):
     
     #GeeksforGeeks helping with lower case alphabet
     
+def test_is_guess_in_word():
+    assert is_guess_in_word('a','apple') == True
+    assert is_guess_in_word('a', 'dog') == False
+    assert is_guess_in_word(',','dog') == False
 
+def test_is_word_guessed():
+    assert is_word_guessed('apple', ['a','p','l','e']) == True
+    assert is_word_guessed('dog', ['d','o']) == False
+    assert is_word_guessed('sleep',['e','p','s']) == False
+
+def test_get_guessed_word():
+    assert get_guessed_word('apple', ['a','p']) == "app__"
+    assert get_guessed_word('dog',['d']) == 'd__'
+    assert get_guessed_word('sleep',['s','l','e','p']) == 'sleep'
     
 
 #These function calls that will start the game
-secret_word = load_word()
-print("The word contains: " + str(len(secret_word)) + "letters")
-spaceman(secret_word)
+# secret_word = load_word()
+# print("The word contains: " + str(len(secret_word)) + "letters")
+# spaceman(secret_word)
+
+
+if __name__ == "__main__":
+    # Run the test function
+    test_is_guess_in_word()
+    test_is_word_guessed()
+    test_get_guessed_word()
+
