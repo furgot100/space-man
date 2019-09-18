@@ -155,7 +155,13 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
     
     #GeeksforGeeks helping with lower case alphabet
-    
+#These function calls that will start the game. uncomment to begin
+# secret_word = load_word()
+# print("The word contains: " + str(len(secret_word)) + "letters")
+# spaceman(secret_word)    
+
+
+
 def test_is_guess_in_word():
     assert is_guess_in_word('a','apple') == True
     assert is_guess_in_word('a', 'dog') == False
@@ -172,10 +178,7 @@ def test_get_guessed_word():
     assert get_guessed_word('sleep',['s','l','e','p']) == 'sleep'
     
 
-#These function calls that will start the game
-# secret_word = load_word()
-# print("The word contains: " + str(len(secret_word)) + "letters")
-# spaceman(secret_word)
+
 
 
 if __name__ == "__main__":
